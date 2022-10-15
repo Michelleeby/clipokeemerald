@@ -1,5 +1,5 @@
-ENV=$PWD/env.sh
-CLI=$PWD/cli.sh
+ENV=$PWD/clipokeemerald/env.sh
+CLI=$PWD/clipokeemerald/cli.sh
 
 source $ENV
 source $CLI
