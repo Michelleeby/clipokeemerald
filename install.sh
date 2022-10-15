@@ -4,13 +4,13 @@ CLI=$PWD/clipokeemerald/cli.sh
 source $ENV
 source $CLI
 
-if [[ ! -e $DECOMPS_ROOT_DIR ]]; then
+if [ ! -d $DECOMPS_ROOT_DIR ]; then
     mkdir -p $DECOMPS_ROOT_DIR
 fi
 
 printf "\n%s\n\n" "✅ Created decomps root directory."
 
-if [[ ! -e $DECOMPS_TOOLS_DIR ]]; then
+if [ ! -d $DECOMPS_TOOLS_DIR ]; then
     mkdir -p $DECOMPS_TOOLS_DIR
 fi
 
@@ -21,7 +21,7 @@ mv $PWD/clipokeemerald $DECOMPS_TOOLS_DIR/cli
 
 printf "\n%s\n\n" "✅ CLI tool directory moved to decomps tools directory."
 
-if [[ ! -e $DECOMPS_AGBCC ]]; then
+if [ ! -d $DECOMPS_AGBCC ]; then
     git clone https://github.com/pret/agbcc.git $DECOMPS_AGBCC
     decomps.init
     cd $DECOMPS_ROOT_DIR
@@ -30,7 +30,7 @@ fi
 printf "\n%s\n\n" "✅ Installed agbcc C compiler @ $DECOMPS_AGBCC."
 
 
-if [[ ! -e $DECOMPS_SOURCE_DIR ]]; then
+if [ ! -d $DECOMPS_SOURCE_DIR ]; then
     mkdir -p $DECOMPS_SOURCE_DIR
 fi
 
