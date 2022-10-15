@@ -1,7 +1,9 @@
-decomps.cli() {
-    local cli_path=~/Games/decomps/tools/cli
+init.cli() {
+    local env=$1/env.sh
+    local cli=$1/cli.sh
 
-    source $cli_path/cli.sh $cli_path
+    source $env
+    source $cli
 }
 
-decomps.cli
+init.cli $1
