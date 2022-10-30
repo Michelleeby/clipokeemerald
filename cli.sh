@@ -49,18 +49,36 @@ decomps.new() {
 
 printf "\n%s\n" "✅ Initialized decomps.new()..."
 
-# decomps.make <project-name> : Given a project, runs the make modern script.
+# decomps.make <project-name> <optional-clean-flag> : Given a project and optionally a clean flag, runs the make modern or make clean script.
 decomps.make() {
     local project=$DECOMPS_SOURCE_DIR/"$1"
+    local command=""
 
     cd $project
-    make modern
-    printf "Finished running make modern, returning home."
+
+    if [ $# -eq 1 ]; then
+        command="modern"
+        make $command
+    elif [ $# -eq 2 ]; then
+        command="clean"
+        make $command
+    else
+        printf "decomps.make expects 1 or 2 inputs, but was given %n." $#
+    fi
+
+    printf "Finished running make %s, returning home." $command
     cd ~
 }
 
-printf "\n%s\n\n" "✅ Initialized decomps.make()..."
+printf "\n%s\n" "✅ Initialized decomps.make()..."
 
+# decomps.open <project-name> : Opens the given project is VS Code.
+decomps.open() {
+    local project=$DECOMPS_SOURCE_DIR/"$1"
+    code $project
+}
+
+printf "\n%s\n\n" "✅ Initialized decomps.open()..."
 
 # Prints brief CLI usage docs
 cli.docs() {
@@ -71,9 +89,10 @@ cli.docs() {
 
     printf -v header "📖 Pokémon decomp CLI tools usage docs 📖"
     printf -v new  "decomps.new  %s %s %s Clones and inits \n%sa new Pokémon decomp project with the given project name from \n%sthe given github repo." $path $name $hr $padding $padding
+    printf -v open "decomps.open %s %s Given a project name, opens the \n%sproject's root directory in VS Code." $name $hr $padding
     printf -v make "decomps.make %s %s Given a project name, runs the make \n%smodern script on the appropriate project \n%sdirectory." $name $hr $padding $padding
 
-    printf "\n%s\n\n%s%s\n\n%s%s\n\n" $header $padding $new $padding $make
+    printf "\n%s\n\n%s%s\n\n%s%s\n\n%s%s\n\n" $header $padding $new $padding $open $padding $make
 }
 
 
