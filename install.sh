@@ -36,6 +36,12 @@ fi
 
 printf "\n%s\n\n" "✅ Created decomps source directory."
 
+if [ ! -d $DECOMPS_BUILT_DIR ]; then
+    mkdir -p $DECOMPS_BUILT_DIR
+fi
+
+printf "\n%s\n\n" "✅ Created decomps images directory."
+
 printf -v path "%s/%s/%s.sh" $DECOMPS_TOOLS_DIR "cli" "init"
 printf -v args "%s/%s" $DECOMPS_TOOLS_DIR "cli"
 printf -v clipokeemerald '%s %s="%s %s %s"' "alias" "clipokeemerald" "source" $path $args
