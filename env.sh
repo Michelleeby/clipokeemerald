@@ -1,10 +1,10 @@
-# path to pokemon decomps root
-DECOMPS_ROOT_DIR=~/Games/decomps
-# path to pokemon decomps tools
-DECOMPS_TOOLS_DIR=$DECOMPS_ROOT_DIR/tools
-# path to pokemon decomps compiler
-DECOMPS_AGBCC=$DECOMPS_TOOLS_DIR/agbcc
-# path to pokemon decomps sources
-DECOMPS_SOURCE_DIR=$DECOMPS_ROOT_DIR/source
-# path to pokemon decomps built images
-DECOMPS_BUILT_DIR=$DECOMPS_ROOT_DIR/images
+function init.env() {
+    local cli_path=$1
+    local printer=$cli_path/env.printer.sh
+    local routes=$cli_path/env.routes.sh
+
+    source $printer
+    source $routes
+}
+
+init.env $1

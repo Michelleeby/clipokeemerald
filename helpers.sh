@@ -1,7 +1,10 @@
-# decomps.clone <github-repository> <project-path> : Clones a given repo into a given project path.
+# @name decomps.clone Clones a new Pokémon decomp project with the given name.
+# @arg { string } $1 project Name of the project to clone.
+# @arg { string } $2 repo Path to GitHub repository to clone.
+# @returns A cloned repository at the given project path.
 decomps.clone() {
-    local gh_repo=$1
-    local project=$2
+    local gh_repo=$2
+    local project=$1
 
     git clone $gh_repo $project
 
@@ -12,7 +15,8 @@ decomps.clone() {
 printf "\n%s\n" "✅ Initialized decomps.clone()..."
 
 
-# decomps.init : Builds the C compiler in the env defined directory. 
+# @name decomps.init Builds the C compiler in the env defined `agbcc` directory. 
+# @returns A built C compiler in the `agbcc` directory.
 decomps.init() {
     cd $DECOMPS_AGBCC
     ./build.sh
@@ -26,7 +30,9 @@ decomps.init() {
 printf "\n%s\n" "✅ Initialized helper decomps.init()..."
 
 
-# decomps.init.project <project-path> : Installs the compiler to the given project path.
+# @name decomps.init.project Installs a built `agbcc` compiler to the given project path.
+# @arg { string } $1 project Path of the project to install the compiler in.
+# @returns A project directory ready to build.
 decomps.init.project() {
     local project=$1
 
@@ -42,7 +48,9 @@ decomps.init.project() {
 printf "\n%s\n" "✅ Initialized helper decomps.init.project()..."
 
 
-# decomps.copy.built <project-name> : Copies the built GBA image to the given project's built image directory.
+# @name decomps.copy.built Copies the built GBA image to the given project's built image directory.
+# @arg { string } $1 name Name of the project to copy the built GBA image from.
+# @returns The given projects built image copied to the env defined decomps image directory.
 decomps.copy.built() {
     local name=$1
     local built_path=$DECOMPS_BUILT_DIR/$name
